@@ -1,0 +1,40 @@
+{% extends "myadmin/base.html" %}
+
+{% block mainbody %}
+<h3>
+	商品类别信息浏览
+</h3>
+<table class="table table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>类别名</th>
+			<th>父类别</th>
+			<th>路径</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for vo in typeslist %}
+		<tr>
+			<td>{{ vo.id }}</td>
+			<td>{{ vo.pname }}|--{{ vo.name }}</td>
+			<td>{{ vo.pid }}</td>
+			<td>{{ vo.path }}</td>
+			<td>
+				<a href="{% url 'myadmin_type_add' vo.id %}" class="button white medium">添加子类别</a>
+				<a href="{% url 'myadmin_type_edit' vo.id %}" class="button white medium">编辑</a>
+				<a href="javascript:Del('{% url 'myadmin_type_del' vo.id %}')" class="button white medium">删除</a>
+			</td>
+			<script type="text/javascript">
+	            function Del(url){
+	                if(confirm("确定要删除吗？删除后不可恢复！")){
+	                    window.location=url
+	                }
+	            }
+			</script>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>				
+{% endblock %}

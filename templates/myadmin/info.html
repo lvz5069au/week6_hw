@@ -1,0 +1,17 @@
+{% extends "myadmin/base.html" %}
+<!--  -->
+{% block mainbody %}                
+    <h3>
+        操作信息提示
+    </h3>
+    <h4>
+        {{ info }}
+        <div class="form-actions" style="margin-top:0px;margin-left:-20px;">
+        	{% if request.session.data != -1 %}
+         	<a href="{% url request.session.url request.session.data %}" class="btn btn-primary">返回</a>
+         	{% else %}
+         	<a href="{% url request.session.url %}" class="btn btn-primary">返回</a>
+         	{% endif %}
+        </div>
+    </h4>
+{% endblock %}
